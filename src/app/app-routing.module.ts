@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'bank-emi',
+    loadChildren: () => import('./bank-emi/bank-emi.module').then( m => m.BankEmiPageModule)
   }
 ];
 @NgModule({

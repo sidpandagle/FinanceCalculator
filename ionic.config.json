@@ -1,5 +1,7 @@
 {
   "name": "finance-calculator",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
