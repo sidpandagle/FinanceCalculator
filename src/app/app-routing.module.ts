@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  // },
   {
+    // path: 'emi-calculator',
     path: '',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'bank-emi',
-    loadChildren: () => import('./bank-emi/bank-emi.module').then( m => m.BankEmiPageModule)
+    loadChildren: () => import('./emi-calculator/emi-calculator.module').then( m => m.EmiCalculatorPageModule)
   }
 ];
 @NgModule({

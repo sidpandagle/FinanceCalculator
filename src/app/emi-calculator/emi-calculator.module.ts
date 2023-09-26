@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BankEmiPageRoutingModule } from './bank-emi-routing.module';
+import { EmiCalculatorPageRoutingModule } from './emi-calculator-routing.module';
 
-import { BankEmiPage } from './bank-emi.page';
+import { EmiCalculatorPage } from './emi-calculator.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BankEmiPageRoutingModule
+    EmiCalculatorPageRoutingModule
   ],
-  declarations: [BankEmiPage]
+  declarations: [EmiCalculatorPage]
 })
-export class BankEmiPageModule {}
+export class EmiCalculatorPageModule {}
