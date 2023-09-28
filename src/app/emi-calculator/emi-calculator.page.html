@@ -17,7 +17,7 @@
   <div class="p-4 text-[#597E8D]">
     <div class="border border-[#2C3E64] rounded-md p-1 pl-3 relative mb-6">
       <div class="text-xs font-bold absolute top-[-16px] left-2 p-2 bg-white">LOAN AMOUNT</div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-rupee" width="28"
           height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round"
           stroke-linejoin="round">
@@ -25,7 +25,7 @@
           <path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" />
           <path d="M7 9l11 0" />
         </svg>
-        <div class=" px-4 w-full">
+        <div class="w-full px-4 ">
           <ion-input type="number" [(ngModel)]="emi.principle" name="principle" placeholder="10,00,000"
             class="text-right text-lg font-bold text-[#2C3E64]"></ion-input>
         </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="border border-[#2C3E64] rounded-md p-1 pl-3 relative mb-6">
       <div class="text-xs font-bold absolute top-[-16px] left-2 p-2 bg-white">INTEREST RATE</div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-percentage" width="28" height="28"
           viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round"
           stroke-linejoin="round">
@@ -42,7 +42,7 @@
           <path d="M7 7m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
           <path d="M6 18l12 -12" />
         </svg>
-        <div class=" px-4 w-full">
+        <div class="w-full px-4 ">
           <ion-input type="number" name="rate" [(ngModel)]="emi.rateOfInterest" placeholder="10"
             class="text-right text-lg font-bold text-[#2C3E64]"></ion-input>
         </div>
@@ -50,7 +50,7 @@
     </div>
     <div class="border border-[#2C3E64] rounded-md p-1 pl-3 relative mb-6">
       <div class="text-xs font-bold absolute top-[-16px] left-2 p-2 bg-white">TENURE</div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <div class="border border-[#2C3E64] rounded-md text-[10px] flex overflow-hidden z-10">
           <div (click)="emi.tenureType='Monthly'" [class.selected]="emi.tenureType==='Monthly'"
             class="bg-white text-[#2C3E64] px-2 py-1">
@@ -61,7 +61,7 @@
             YEARLY
           </div>
         </div>
-        <div class=" px-4 w-2/3">
+        <div class="w-2/3 px-4 ">
           <ion-input type="number" name="tenure" [(ngModel)]="emi.tenure" placeholder="10"
             class="text-right text-lg font-bold text-[#2C3E64]"></ion-input>
         </div>
@@ -69,7 +69,7 @@
     </div>
     <div class="border border-[#2C3E64] rounded-md p-1 pl-3 relative mb-5">
       <div class="text-xs font-bold absolute top-[-16px] left-2 p-2 bg-white">START DATE</div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-dollar" width="28"
           height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round"
           stroke-linejoin="round">
@@ -81,15 +81,15 @@
           <path d="M21 15h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
           <path d="M19 21v1m0 -8v1" />
         </svg>
-        <div class=" px-4 w-full">
-          <ion-input type="date" name="startdate" [(ngModel)]="emi.startDate"
+        <div class="w-full px-4 ">
+          <ion-input type="date" placeholder="28-09-2023" name="startdate" [(ngModel)]="emi.startDate"
             class="text-right text-lg font-bold text-[#2C3E64]"></ion-input>
         </div>
       </div>
     </div>
     <div class="flex gap-2">
       <div (click)="resetForm()" class="border border-[#2C3E64] w-1/5 text-center rounded-md p-1 mb-5">
-        <div class="p-2 text-lg font-semibold w-full">
+        <div class="w-full p-2 text-lg font-semibold">
           <svg (click)="resetForm()" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-reload" width="28" height="28"
       viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round"
       stroke-linejoin="round">
@@ -100,7 +100,7 @@
         </div>
       </div>
       <div (click)="calculateMonthlyEMI()" class="border w-full text-center rounded-md p-1 mb-5 bg-[#2C3E64] text-white">
-        <div class="p-2 text-lg font-semibold w-full">
+        <div class="w-full p-2 text-lg font-semibold">
           CALCULATE
         </div>
       </div>
@@ -111,20 +111,20 @@
           <div>Monthly Payment</div>
           <div>{{emi.monthlyEMI | currency: '₹'}}</div>
         </div>
-        <div class="flex justify-between items-center text-lg">
+        <div class="flex items-center justify-between text-lg">
           <div>Total Interest</div>
           <div class="font-semibold">{{emi.totalInterestForTheYear | currency: '₹'}}</div>
         </div>
-        <div class="flex justify-between items-center text-lg">
+        <div class="flex items-center justify-between text-lg">
           <div>Total Amount</div>
           <div class="font-semibold">{{(this.emi.principle || 0) + (emi.totalInterestForTheYear || 0) | currency: '₹'}}</div>
         </div>
-        <div class="flex justify-between items-center text-lg">
+        <div class="flex items-center justify-between text-lg">
           <div>Closure Date</div>
           <div class="font-semibold">{{this.emi.endDate | date:'dd MMM, YYYY'}}</div>
         </div>
         <div class="relative">
-          <div class="flex gap-3 justify-center items-center absolute w-full top-2">
+          <div class="absolute flex items-center justify-center w-full gap-3 top-2">
             <div class="bg-[#FE8141]  p-2 rounded-full shadow-sm" (click)="shareResult()">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-share" width="28" height="28"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round"
@@ -147,6 +147,7 @@
                 <path d="M12 4l0 12" />
               </svg>
             </div> -->
+            
           </div>
         </div>
       </div>

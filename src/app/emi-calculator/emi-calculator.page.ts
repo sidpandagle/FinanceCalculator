@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Share } from '@capacitor/share';
+import { AdmobService } from '../services/admob.service';
 
 @Component({
   selector: 'app-emi-calculator',
@@ -11,8 +12,9 @@ export class EmiCalculatorPage implements OnInit {
 
   emi: EMI;
 
-  constructor() {
+  constructor(private adMobService: AdmobService) {
     this.emi = new EMI();
+    this.adMobService.initialize();
   }
 
 
