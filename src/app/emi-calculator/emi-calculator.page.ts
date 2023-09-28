@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Share } from '@capacitor/share';
+
 @Component({
   selector: 'app-emi-calculator',
   templateUrl: './emi-calculator.page.html',
@@ -29,7 +31,7 @@ export class EmiCalculatorPage implements OnInit {
     let denominator = (1 + interestPerMonth) ** Number(tenureInMonths) - 1;
     this.emi.monthlyEMI = this.roundToDecimal(numerator / denominator, 2);
     this.emi.totalInterestForTheYear = this.getTotalInterestForTheYear();
-    this.emi.endDate = moment(this.emi.startDate, 'YYYY-MM-DD').add(interestPerMonth, 'M').format('YYYY-MM-DD');
+    this.emi.endDate = moment(this.emi.startDate, 'YYYY-MM-DD').add(tenureInMonths, 'M').format('YYYY-MM-DD');
   }
 
   getTenureInMonths() {
@@ -60,15 +62,44 @@ export class EmiCalculatorPage implements OnInit {
   resetForm() {
     this.emi = new EMI();
   }
+
+  // download
+  downloadResult() {
+
+  }
+
+  async shareResult() {
+    await Share.share({
+      text: `Monthly Payment: ₹${this.convertNumberToRupees(Number(this.emi.monthlyEMI))}\nTotal Interest: ₹${this.convertNumberToRupees(Number(this.emi.totalInterestForTheYear))}\nTotal Amount: ₹${this.convertNumberToRupees((this.emi.principle ? this.emi.principle : 0) + (this.emi.totalInterestForTheYear ? this.emi.totalInterestForTheYear : 0))}\nClosure Date: ${moment(this.emi.endDate, 'YYYY-MM-DD').format('DD-MM-YYYY')}`,
+    });
+  }
+
+  convertNumberToRupees(numVal: number) {
+    let numString = numVal.toString();
+    let afterDecimalPointValues = '';
+    let decimalSerparation = numString.split('.');
+    let result = '';
+    if (numString.includes('.')) {
+      afterDecimalPointValues = '.' + decimalSerparation[1]
+    }
+    decimalSerparation[0].split('').reverse().forEach((res, i) => {
+      if (i == 3 || (i > 3 && (i % 2 == 1))) {
+        result += ','
+      }
+      result += res
+    })
+    return (result.split('').reverse().join('') + afterDecimalPointValues);
+  }
+
 }
 
 export class EMI {
-  principle: number | null= null;
-  rateOfInterest: number | null= null;
-  tenure: number | null= null;
+  principle: number | null = null;
+  rateOfInterest: number | null = null;
+  tenure: number | null = null;
   tenureType: string = 'Yearly';
   startDate: string = '';
   endDate: string = '';
-  monthlyEMI: number | null= null;
-  totalInterestForTheYear: number | null= null;
+  monthlyEMI: number | null = null;
+  totalInterestForTheYear: number | null = null;
 }
